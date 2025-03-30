@@ -1,0 +1,27 @@
+﻿version: '3.8'
+services:
+  api:
+    build: .
+    container_name: proveedores_api
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    depends_on:
+      - mongodb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__MongoDB=mongodb://admin:adminpassword@mongodb:27017/
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongo_proveedores
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

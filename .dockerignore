@@ -1,0 +1,7 @@
+﻿bin/
+obj/
+*.md
+.git
+.dockerignore
+Dockerfile
+.env
